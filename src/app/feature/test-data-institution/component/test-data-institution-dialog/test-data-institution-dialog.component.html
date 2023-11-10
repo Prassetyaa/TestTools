@@ -1,0 +1,73 @@
+<!-- Test Data Institution Dialog -->
+<p-dialog
+  [header]="
+    StringUtils.capitalizeFirstLetter(dialogMode.toLocaleLowerCase()) +
+    ' Institution'
+  "
+  [(visible)]="isOpen"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  class="test-data-institution-dialog"
+  (onShow)="onDialogVisible()"
+  (onHide)="onClose()"
+>
+  <div class="test-data-institution-dialog-container" [formGroup]="formGroup">
+    <div class="test-data-institution-form-container">
+      <div class="test-data-institution-first-form">
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Name</span>
+          <input class="input" pInputText formControlName="name"/>
+        </div>
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">FIID</span>
+          <input class="input" pInputText formControlName="fiid"/>
+        </div>
+      </div>
+      <div class="test-data-institution-first-form">
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Secondary ID</span>
+          <input class="input" pInputText formControlName="secondaryId"/>
+        </div>
+       
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">External Version</span>
+          <input class="input" pInputText formControlName="externalVersion"/>
+        </div>
+      </div>
+      <div class="test-data-institution-first-form">
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">comment</span>
+          <input class="input" formControlName="comment" pInputText/>
+        </div>
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Internal Revision</span>
+          <input class="input" pInputText formControlName="internalRevison"/>
+        </div>
+      </div>
+     
+    </div>
+
+
+    <div class="dialog-button-container">
+      <button
+        mat-stroked-button
+        color="warn"
+        class="dialog-button"
+        (click)="onClose()"
+      >
+        Cancel
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="dialog-button"
+        [disabled]="isValueNotValid()"
+        (click)="onSave(formGroup.getRawValue())"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</p-dialog>

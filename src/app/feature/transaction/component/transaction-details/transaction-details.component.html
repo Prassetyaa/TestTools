@@ -1,0 +1,23 @@
+<div class="transaction-details-main-container">
+    <div class="first-container">
+      <p-tabView class="transaction-details-tab" (onChange)="onTabChange($event)">
+        <p-tabPanel header="General Setting">
+            <app-transaction-general-setting></app-transaction-general-setting>
+        </p-tabPanel>
+        <p-tabPanel header="Field Setting">
+            <app-transaction-field-setting></app-transaction-field-setting>
+        </p-tabPanel>  
+        <p-tabPanel header="EMV Setting">
+            <app-transaction-emv></app-transaction-emv>
+        </p-tabPanel>
+        <p-tabPanel header="QR Code">
+            <app-transaction-qr-code></app-transaction-qr-code>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+  
+  <ng-template [ngIf]="isLoading">
+    <app-overlay-loading [isLoading]="isLoading"></app-overlay-loading>
+  </ng-template>
+  

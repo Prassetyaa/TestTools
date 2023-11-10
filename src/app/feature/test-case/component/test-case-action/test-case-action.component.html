@@ -1,0 +1,120 @@
+<div class="card-container">
+  <!-- <p-timeline [value]="events" align="alternate" styleClass="customized-timeline">
+        <ng-template pTemplate="marker" let-event>
+            <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
+                <i [ngClass]="event.icon"></i>
+            </span>
+        </ng-template>
+        <ng-template pTemplate="content" let-event>
+            <p-card [header]="event.status">
+                <div class="container" *ngIf="event.status === 'Transactions'">
+                    <div class="container-transaction">
+                        <div class="transaction-field">
+                            <p-dropdown
+                              formControlName="qrCode"
+                              class="field-dropdown"
+                              [options]="[]"
+                              optionLabel="description"
+                              [placeholder]="'Add Transaction'"
+                              [filter]="true"
+                              filterBy="description"
+                            ></p-dropdown>
+                          </div>
+                        <div class="add-button-container">
+                          <button mat-raised-button color="primary" class="sc-search-button">
+                            Add
+                          </button>
+                        </div>
+                    </div>
+                </div>
+                <button *ngIf="event.status === 'Condition Transfer'" pButton label="Change Condition" class="p-button-text"></button>
+            </p-card>
+        </ng-template>
+    </p-timeline> -->
+  <div class="container table">
+    <p-table
+      #dt
+      [tableStyle]="{ 'min-width': '50rem' }"
+      [resizableColumns]="true"
+      [value]="[]"
+      selectionMode="single"
+      [paginator]="true"
+      [exportHeader]="'customExportHeader'"
+      [showCurrentPageReport]="true"
+      [scrollable]="true"
+      [rows]="5"
+      dataKey="id"
+      scrollHeight="50vh"
+      class="rule-table"
+      styleClass="p-datatable-sm p-datatable-gridlines"
+    >
+      <ng-template pTemplate="caption">
+        <div class="header-table">
+          <span style="font-size: 0.8rem; padding-left: 1rem"
+            >Test Cases Data</span
+          >
+
+          <div class="table-func-container-2">
+            <button
+              type="button"
+              pButton
+              pRipple
+              icon="bx bx-layer-plus"
+              (click)="onAddTestAction()"
+              matTooltip="Add Action"
+              [matTooltipPosition]="'below'"
+            ></button>
+            <button
+              type="button"
+              pButton
+              pRipple
+              icon="bx bx-edit"
+              matTooltip="Edit Action"
+              [matTooltipPosition]="'below'"
+            ></button>
+            <button
+              type="button"
+              pButton
+              pRipple
+              icon="bx bx-trash-alt"
+              matTooltip="Delete Action"
+              [matTooltipPosition]="'below'"
+              class="p-button-danger"
+            ></button>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th pResizableColumn>Actions</th>
+          <th pResizableColumn>Condition</th>
+          <th pResizableColumn>Description</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+        <tr [pSelectableRow]="product">
+          <td class="row-width-xs">{{ product.respCode }}</td>
+          <td class="row-width">{{ product.intResp?.description }}</td>
+          <td class="row-width">{{ product.intResp?.description }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr style="">
+          <td colspan="3">There is no test case.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<ng-template [ngIf]="visibleTestCaseDialog">
+  <!--CRUD Black List Dialog-->
+  <app-test-case-action-dialog
+    [isOpen]="visibleTestCaseDialog"
+    [itemSelected]="selectedTestCase"
+    (closeSelf)="onCloseListDialog($event)"
+    (isLoading)="onLoading($event)"
+    [dialogMode]="dialogMode"
+  ></app-test-case-action-dialog>
+</ng-template>

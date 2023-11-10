@@ -1,0 +1,37 @@
+.card-container {
+  max-height: 400px; /* Set a fixed height for the container */
+  overflow-y: auto; /* Enable vertical scroll when content exceeds the container height */
+  padding: 1rem;
+}
+
+.custom-marker {
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.custom-marker > i {
+  color: white;
+}
+
+.container-transaction {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.transaction-field {
+  width: 100%;
+}
+
+.header-table {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-func-container-2 {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}

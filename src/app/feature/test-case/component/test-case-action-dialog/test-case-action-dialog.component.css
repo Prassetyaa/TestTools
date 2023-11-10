@@ -1,0 +1,58 @@
+.test-case-action-dialog-container {
+  @apply se-w-full
+    se-flex se-flex-col se-gap-[30px];
+}
+
+.test-case-action-form-container {
+  @apply se-w-full
+    se-flex se-flex-col se-justify-center se-gap-[10px];
+}
+
+.white-first-form {
+  @apply se-grid se-grid-cols-2 se-auto-cols-auto se-gap-[20px] se-items-center;
+}
+
+.common-text-field-dialog-container {
+  @apply se-w-full;
+}
+
+.label-txt-field-sm {
+  @apply se-text-[.8rem]
+    se-font-semibold;
+}
+
+.dialog-button-container {
+  @apply se-flex se-justify-end se-gap-[15px];
+}
+
+.dialog-button {
+  @apply se-w-[100px] se-text-[.8rem];
+}
+
+.transaction-tb-container {
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.transaction-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.transaction-buttons-container {
+  display: flex;
+  gap: 10px;
+}
+
+/*NG DEEP*/
+::ng-deep .test-case-action-dialog .p-dialog-content {
+  overflow-y: unset !important;
+}
+
+::ng-deep .test-case-action-dialog .p-dialog .p-dialog-content {
+  padding: 0 1.5rem 1rem;
+}

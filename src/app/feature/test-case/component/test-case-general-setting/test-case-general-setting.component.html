@@ -1,0 +1,56 @@
+<div class="test-case-general-container">
+    <div class="test-case-dialog-container" [formGroup]="formGroup">
+      <div class="test-case-form-container">
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Name</span>
+          <input class="input" pInputText formControlName="name"/>
+        </div>
+  
+        <div class="test-case-first-form">
+          <div class="common-text-field-dialog-container">
+            <span class="label-txt-field-sm">Scheme Setting</span>
+            <p-dropdown
+            formControlName="schemeSetting"
+            class="field-dropdown"
+            [options]="[]"
+            optionLabel="description"
+            [placeholder]="'Select Scheme Setting'"
+            [filter]="true"
+            filterBy="description"
+          ></p-dropdown>
+          </div>
+          <div class="common-text-field-dialog-container">
+            <span class="label-txt-field-sm">Connection</span>
+            <p-dropdown
+            formControlName="connection"
+            class="field-dropdown"
+            [options]="[]"
+            optionLabel="description"
+            [placeholder]="'Select Connection'"
+            [filter]="true"
+            filterBy="description"
+          ></p-dropdown>
+          </div>
+        </div>
+  
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Test Case Type</span>
+          <p-dropdown
+          formControlName="testCaseType"
+          class="field-dropdown"
+          [options]="[]"
+          optionLabel="description"
+          [placeholder]="'Select Test Case Type'"
+          [filter]="true"
+          filterBy="description"
+        ></p-dropdown>
+        </div>
+      </div>
+  
+      <div class="dialog-button-container">
+        <button mat-stroked-button color="warn" class="dialog-button" (click)="onClose()">Cancel</button>
+        <button mat-raised-button color="primary" class="dialog-button" [disabled]="isValueNotValid()" (click)="onSave(formGroup.getRawValue())">Save</button>
+      </div>
+    </div>
+  </div>
+  

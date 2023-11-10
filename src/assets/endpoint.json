@@ -1,0 +1,1660 @@
+[
+    {
+        "endpointId": 5,
+        "url": "BIFAST/login",
+        "isAuth": true,
+        "sysMti": null,
+        "configId": 2,
+        "type": "AUTH",
+        "states": [
+          {
+            "state": "Request",
+            "key": "5 - Request",
+            "configs": [
+              {
+                "fieldName": "username",
+                "length": 20,
+                "padChar": null,
+                "letters": null,
+                "sequence": 1,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 39,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "password",
+                "length": 20,
+                "padChar": null,
+                "letters": null,
+                "sequence": 2,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 40,
+                "parentField": null,
+                "level": 1
+              }
+            ]
+          },
+          {
+            "state": "Response",
+            "key": "5 - Response",
+            "configs": [
+              {
+                "fieldName": "username",
+                "length": 20,
+                "padChar": null,
+                "letters": null,
+                "sequence": 1,
+                "state": "RESPONSE",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 41,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "Authorization",
+                "length": 9999,
+                "padChar": null,
+                "letters": null,
+                "sequence": 1,
+                "state": "RESPONSE",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": {
+                  "formatterId": 3,
+                  "format": "username + password",
+                  "srcData": null
+                },
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [
+                  {
+                    "actionId": 15,
+                    "fieldId": 42,
+                    "sequence": 1,
+                    "args": null,
+                    "type": {
+                      "typeId": 4,
+                      "description": null,
+                      "expression": "jsonActGenerateJWT"
+                    }
+                  }
+                ],
+                "validValues": [],
+                "childField": [],
+                "id": 42,
+                "parentField": null,
+                "level": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "endpointId": 6,
+        "url": "BIFAST/inquiry",
+        "isAuth": false,
+        "sysMti": "0200",
+        "configId": 2,
+        "type": "ORIGINAL",
+        "states": [
+          {
+            "state": "Request",
+            "key": "6 - Request",
+            "configs": [
+              {
+                "fieldName": "fromAccount",
+                "length": 34,
+                "padChar": null,
+                "letters": null,
+                "sequence": 1,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 43,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "msgSTAN",
+                "length": 6,
+                "padChar": null,
+                "letters": null,
+                "sequence": 2,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 6,
+                  "description": "Integer"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 44,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxCode",
+                "length": 6,
+                "padChar": null,
+                "letters": null,
+                "sequence": 3,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 45,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "posConditionMode",
+                "length": 2,
+                "padChar": null,
+                "letters": null,
+                "sequence": 4,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 6,
+                  "description": "Integer"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 46,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "toAccount",
+                "length": 50,
+                "padChar": null,
+                "letters": null,
+                "sequence": 6,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 47,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "toBankCode",
+                "length": 3,
+                "padChar": null,
+                "letters": null,
+                "sequence": 7,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 48,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxAmount",
+                "length": 19,
+                "padChar": null,
+                "letters": null,
+                "sequence": 8,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 6,
+                  "description": "Integer"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 49,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "retrievalReferenceNumber",
+                "length": 8,
+                "padChar": null,
+                "letters": null,
+                "sequence": 9,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 6,
+                  "description": "Integer"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 50,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "transmissionDateTime",
+                "length": 10,
+                "padChar": null,
+                "letters": null,
+                "sequence": 10,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 51,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxDate",
+                "length": 4,
+                "padChar": null,
+                "letters": null,
+                "sequence": 11,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 52,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "cifID",
+                "length": 20,
+                "padChar": null,
+                "letters": null,
+                "sequence": 13,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 6,
+                  "description": "Integer"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 53,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "accountName",
+                "length": 50,
+                "padChar": null,
+                "letters": null,
+                "sequence": 14,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 54,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "accountNumberID",
+                "length": 25,
+                "padChar": null,
+                "letters": null,
+                "sequence": 15,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 55,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "reffNumber",
+                "length": 16,
+                "padChar": null,
+                "letters": null,
+                "sequence": 16,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 56,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxPurpose",
+                "length": 1,
+                "padChar": null,
+                "letters": null,
+                "sequence": 17,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 6,
+                  "description": "Integer"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 57,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxMessage",
+                "length": 99,
+                "padChar": null,
+                "letters": null,
+                "sequence": 18,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 58,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "merchantType",
+                "length": 4,
+                "padChar": null,
+                "letters": null,
+                "sequence": 19,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 6,
+                  "description": "Integer"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 59,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "issuerID",
+                "length": 6,
+                "padChar": null,
+                "letters": null,
+                "sequence": 20,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 6,
+                  "description": "Integer"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 60,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxTime",
+                "length": 6,
+                "padChar": null,
+                "letters": null,
+                "sequence": 21,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 61,
+                "parentField": null,
+                "level": 1
+              }
+            ]
+          },
+          {
+            "state": "Response",
+            "key": "6 - Response",
+            "configs": [
+              {
+                "fieldName": "rCode",
+                "length": 3,
+                "padChar": null,
+                "letters": null,
+                "sequence": 1,
+                "state": "RESPONSE",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 62,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "message",
+                "length": 100,
+                "padChar": null,
+                "letters": null,
+                "sequence": 1,
+                "state": "RESPONSE",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 63,
+                "parentField": null,
+                "level": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "endpointId": 7,
+        "url": "BIFAST/transfer",
+        "isAuth": false,
+        "sysMti": "0200",
+        "configId": 2,
+        "type": "ORIGINAL",
+        "states": [
+          {
+            "state": "Request",
+            "key": "7 - Request",
+            "configs": [
+              {
+                "fieldName": "fromAccount",
+                "length": 34,
+                "padChar": null,
+                "letters": null,
+                "sequence": 1,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 64,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxCode",
+                "length": 6,
+                "padChar": null,
+                "letters": null,
+                "sequence": 2,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 65,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "posConditionMode",
+                "length": 2,
+                "padChar": null,
+                "letters": null,
+                "sequence": 3,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 66,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "issuerID",
+                "length": 6,
+                "padChar": null,
+                "letters": null,
+                "sequence": 4,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 86,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "beneficiaryID",
+                "length": 6,
+                "padChar": null,
+                "letters": null,
+                "sequence": 5,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 87,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "msgSTAN",
+                "length": 6,
+                "padChar": null,
+                "letters": null,
+                "sequence": 6,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 67,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxAmount",
+                "length": 19,
+                "padChar": null,
+                "letters": null,
+                "sequence": 7,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 68,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "retrievalReferenceNumber",
+                "length": 8,
+                "padChar": null,
+                "letters": null,
+                "sequence": 8,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 69,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "cifID",
+                "length": 20,
+                "padChar": null,
+                "letters": null,
+                "sequence": 9,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 70,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxCurrencyCode",
+                "length": 3,
+                "padChar": null,
+                "letters": null,
+                "sequence": 10,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 71,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "accountName",
+                "length": 50,
+                "padChar": null,
+                "letters": null,
+                "sequence": 11,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 72,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxDate",
+                "length": 4,
+                "padChar": null,
+                "letters": null,
+                "sequence": 12,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 73,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxPAN",
+                "length": 19,
+                "padChar": null,
+                "letters": null,
+                "sequence": 13,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 74,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxTime",
+                "length": 6,
+                "padChar": null,
+                "letters": null,
+                "sequence": 14,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 88,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "transmissionDateTime",
+                "length": 10,
+                "padChar": null,
+                "letters": null,
+                "sequence": 15,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 75,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "accountNumberID",
+                "length": 25,
+                "padChar": null,
+                "letters": null,
+                "sequence": 16,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 76,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "toAccountName",
+                "length": 30,
+                "padChar": null,
+                "letters": null,
+                "sequence": 17,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 77,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "CNINTag",
+                "length": 35,
+                "padChar": null,
+                "letters": null,
+                "sequence": 18,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 78,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "settlementDate",
+                "length": 4,
+                "padChar": null,
+                "letters": null,
+                "sequence": 19,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 79,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "reffNumber",
+                "length": 16,
+                "padChar": null,
+                "letters": null,
+                "sequence": 21,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 80,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxPurpose",
+                "length": 1,
+                "padChar": null,
+                "letters": null,
+                "sequence": 22,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 81,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxMessage",
+                "length": 99,
+                "padChar": null,
+                "letters": null,
+                "sequence": 23,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 82,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "merchantType",
+                "length": 4,
+                "padChar": null,
+                "letters": null,
+                "sequence": 24,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 83,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "toAccount",
+                "length": 34,
+                "padChar": null,
+                "letters": null,
+                "sequence": 25,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 84,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "acquirerID",
+                "length": 3,
+                "padChar": null,
+                "letters": null,
+                "sequence": 26,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 85,
+                "parentField": null,
+                "level": 1
+              }
+            ]
+          },
+          {
+            "state": "Response",
+            "key": "7 - Response",
+            "configs": [
+              {
+                "fieldName": "rCode",
+                "length": 3,
+                "padChar": null,
+                "letters": null,
+                "sequence": 1,
+                "state": "RESPONSE",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 89,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "message",
+                "length": 100,
+                "padChar": null,
+                "letters": null,
+                "sequence": 1,
+                "state": "RESPONSE",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 90,
+                "parentField": null,
+                "level": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "endpointId": 8,
+        "url": "QRIS/payment",
+        "isAuth": false,
+        "sysMti": "0200",
+        "configId": 2,
+        "type": "ORIGINAL",
+        "states": [
+          {
+            "state": "Request",
+            "key": "8 - Request",
+            "configs": [
+              {
+                "fieldName": "mid",
+                "length": 25,
+                "padChar": null,
+                "letters": null,
+                "sequence": 1,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 91,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "refNo",
+                "length": 10,
+                "padChar": null,
+                "letters": null,
+                "sequence": 2,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 92,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "tid",
+                "length": 25,
+                "padChar": null,
+                "letters": null,
+                "sequence": 3,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 93,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "mpan",
+                "length": 25,
+                "padChar": null,
+                "letters": null,
+                "sequence": 4,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 94,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "merchantName",
+                "length": 50,
+                "padChar": null,
+                "letters": null,
+                "sequence": 5,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 95,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "mcc",
+                "length": 25,
+                "padChar": null,
+                "letters": null,
+                "sequence": 6,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 96,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "merchantCriteria",
+                "length": 30,
+                "padChar": null,
+                "letters": null,
+                "sequence": 7,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 97,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "merchantCity",
+                "length": 25,
+                "padChar": null,
+                "letters": null,
+                "sequence": 8,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 98,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "countryCode",
+                "length": 25,
+                "padChar": null,
+                "letters": null,
+                "sequence": 9,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 99,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "postalCode",
+                "length": 25,
+                "padChar": null,
+                "letters": null,
+                "sequence": 10,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 100,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "accountNo",
+                "length": 20,
+                "padChar": null,
+                "letters": null,
+                "sequence": 11,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 101,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "custName",
+                "length": 30,
+                "padChar": null,
+                "letters": null,
+                "sequence": 12,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 102,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "cpan",
+                "length": 30,
+                "padChar": null,
+                "letters": null,
+                "sequence": 13,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 103,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "trxDate",
+                "length": 4,
+                "padChar": null,
+                "letters": null,
+                "sequence": 14,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 104,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "amount",
+                "length": 13,
+                "padChar": null,
+                "letters": null,
+                "sequence": 15,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 105,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "tips",
+                "length": 13,
+                "padChar": null,
+                "letters": null,
+                "sequence": 16,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 106,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "bankAcqCode",
+                "length": 3,
+                "padChar": null,
+                "letters": null,
+                "sequence": 17,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 107,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "additionalData",
+                "length": 100,
+                "padChar": null,
+                "letters": null,
+                "sequence": 18,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 108,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "invoice",
+                "length": 25,
+                "padChar": null,
+                "letters": null,
+                "sequence": 19,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 109,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "issuerID",
+                "length": 3,
+                "padChar": null,
+                "letters": null,
+                "sequence": 20,
+                "state": "REQUEST",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 110,
+                "parentField": null,
+                "level": 1
+              }
+            ]
+          },
+          {
+            "state": "Response",
+            "key": "8 - Response",
+            "configs": [
+              {
+                "fieldName": "rCode",
+                "length": 3,
+                "padChar": null,
+                "letters": null,
+                "sequence": 1,
+                "state": "RESPONSE",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 111,
+                "parentField": null,
+                "level": 1
+              },
+              {
+                "fieldName": "message",
+                "length": 100,
+                "padChar": null,
+                "letters": null,
+                "sequence": 1,
+                "state": "RESPONSE",
+                "dataType": {
+                  "typeId": 1,
+                  "description": "String"
+                },
+                "formatter": null,
+                "msgConfig": null,
+                "endpoint": null,
+                "actions": [],
+                "validValues": [],
+                "childField": [],
+                "id": 112,
+                "parentField": null,
+                "level": 1
+              }
+            ]
+          }
+        ]
+      }
+]

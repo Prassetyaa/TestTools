@@ -1,0 +1,17 @@
+<div class="test-case-detail-main-container">
+    <div class="first-container">
+      <p-tabView class="test-case-detail-tab" (onChange)="onTabChange($event)">
+        <p-tabPanel header="General Setting">
+          <app-test-case-general-setting></app-test-case-general-setting>
+        </p-tabPanel>
+        <p-tabPanel header="Test Case">
+          <app-test-case-action></app-test-case-action>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+  
+  <ng-template [ngIf]="isLoading">
+    <app-overlay-loading [isLoading]="isLoading"></app-overlay-loading>
+  </ng-template>
+  

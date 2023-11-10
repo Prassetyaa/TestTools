@@ -1,0 +1,98 @@
+<!-- Test Data Institution Dialog -->
+<p-dialog
+  [header]="
+    StringUtils.capitalizeFirstLetter(dialogMode.toLocaleLowerCase()) +
+    ' Pan'
+  "
+  [(visible)]="isOpen"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  class="test-data-pan-dialog"
+  (onShow)="onDialogVisible()"
+  (onHide)="onClose()"
+>
+  <div class="test-data-pan-dialog-container" [formGroup]="formGroup">
+    <div class="test-data-pan-form-container">
+      <div class="test-data-pan-first-form">
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">PAN</span>
+          <input class="input" pInputText formControlName="pan"/>
+        </div>
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">CardHolder Name</span>
+          <input class="input" pInputText formControlName="cardHolderName"/>
+          <!-- <p-dropdown
+            formControlName="test"
+            class="field-dropdown"
+            [options]="[]"
+            optionLabel="description"
+            [placeholder]="'Select Entity Type'"
+            [filter]="true"
+            filterBy="description"
+          ></p-dropdown> -->
+        </div>
+      </div>
+      <div class="test-data-pan-first-form">
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Issuer</span>
+          <input class="input" pInputText formControlName="issuer"/>
+          <!-- <p-calendar
+            formControlName="test"
+            appendTo="body"
+            class="calender-field-pick"
+            [showIcon]="true"
+            [showTime]="true"
+            [showSeconds]="true"
+          ></p-calendar> -->
+        </div>
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Comment</span>
+          <input class="input" pInputText formControlName="comment"/>
+
+          <!-- <p-calendar
+            formControlName="test"
+            appendTo="body"
+            class="calender-field-pick"
+            [showIcon]="true"
+            [showTime]="true"
+            [showSeconds]="true"
+          ></p-calendar> -->
+        </div>
+      </div>
+      <div class="test-data-pan-first-form">
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">External Version</span>
+          <input class="input" pInputText formControlName="externalVersion"/>
+        </div>
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Internal Revision</span>
+          <input class="input" pInputText formControlName="internalRevision"/>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="dialog-button-container">
+      <button
+        mat-stroked-button
+        color="warn"
+        class="dialog-button"
+        (click)="onClose()"
+      >
+        Cancel
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="dialog-button"
+        [disabled]="isValueNotValid()"
+        (click)="onSave(formGroup.getRawValue())"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</p-dialog>

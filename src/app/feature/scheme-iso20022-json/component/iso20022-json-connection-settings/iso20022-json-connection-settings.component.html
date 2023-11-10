@@ -1,0 +1,138 @@
+<div class="json-connection-main-container">
+  <div class="first-container">
+    <div class="search-container">
+      <div class="sc-first-row">
+        <div class="field">
+          <div class="sc-field-container">
+            <div class="sc-first-text-field-1">
+              <span class="label-txt-field">Int Response Code</span>
+              <p-dropdown
+                class="field-dropdown-sm"
+                [options]="[]"
+                [filter]="true"
+                optionLabel="description"
+                formControlName="intResp"
+                placeholder="Select Int Response Code"
+                [showClear]="true"
+              ></p-dropdown>
+            </div>
+
+            <div class="sc-first-text-field-1">
+              <span class="label-txt-field">Response Code</span>
+              <input
+                class="input-sm"
+                pInputText
+                aria-describedby="username-help"
+                formControlName="respCode"
+              />
+            </div>
+          </div>
+
+          <div class="search-button-container">
+            <button mat-stroked-button color="warn" class="dialog-button">
+              Reset
+            </button>
+            <button mat-raised-button color="primary" class="sc-search-button">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="second-container">
+    <p-card class="connection-body-card">
+      <p-table
+        #dt
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [resizableColumns]="true"
+        [value]="connectionItems"
+        selectionMode="single"
+        [paginator]="true"
+        [(selection)]="selectedConnection"
+        [exportHeader]="'customExportHeader'"
+        [showCurrentPageReport]="true"
+        [scrollable]="true"
+        [rows]="15"
+        dataKey="id"
+        scrollHeight="50vh"
+        class="rule-table"
+        styleClass="p-datatable-sm p-datatable-gridlines"
+      >
+        <ng-template pTemplate="caption">
+          <div class="header-table">
+            <span style="font-size: 0.8rem; padding-left: 1rem"
+              >Connection Data</span
+            >
+            <div class="table-func-container-2">
+              <button
+                type="button"
+                pButton
+                pRipple
+                icon="bx bx-layer-plus"
+                matTooltip="Add Connection"
+                (click)="addConnectionDialog()"
+                [matTooltipPosition]="'below'"
+              ></button>
+              <button
+                type="button"
+                pButton
+                pRipple
+                icon="bx bx-edit"
+                matTooltip="Edit Connection"
+                [disabled]="selectedConnection === undefined"
+                [matTooltipPosition]="'below'"
+              ></button>
+              <button
+                type="button"
+                pButton
+                pRipple
+                icon="bx bx-trash-alt"
+                matTooltip="Delete Connection"
+                [disabled]="selectedConnection === undefined"
+                [matTooltipPosition]="'below'"
+                class="p-button-danger"
+              ></button>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th pResizableColumn>IP Address</th>
+            <th pResizableColumn>Port</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr [pSelectableRow]="product">
+            <td class="row-width-xs">{{ product.ipAddress }}</td>
+            <td class="row-width">{{ product.port }}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr style="">
+            <td colspan="3">There is no connection.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>
+
+<!-- <ng-template [ngIf]="isLoading">
+  <app-overlay-loading [isLoading]="isLoading"></app-overlay-loading>
+</ng-template> -->
+
+
+<ng-template [ngIf]="visibleConnectionDialog">
+  <!--CRUD Connection Dialog-->
+  <app-iso20022-json-connection-dialog
+    [isOpen]="visibleConnectionDialog"
+    [itemSelected]="selectedConnection"
+    (closeSelf)="onCloseListDialog($event)"
+    (isLoading)="onLoading($event)"
+    [dialogMode]="dialogMode"
+  ></app-iso20022-json-connection-dialog>
+</ng-template>
+

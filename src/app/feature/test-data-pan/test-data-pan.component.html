@@ -1,0 +1,168 @@
+<div class="test-data-pan-main-container">
+    <div class="first-container">
+      <p-card class="search-card">
+        <div class="search-container" [formGroup]="formGroup">
+          <div class="sc-first-row">
+            <div class="field">
+              <div class="sc-field-container">
+                <div class="sc-first-text-field-1">
+                  <span class="label-txt-field">PAN</span>
+                  <input
+                    class="input-sm"
+                    pInputText
+                    aria-describedby="username-help"
+                    formControlName="pan"
+                  />
+                </div>
+  
+                <div class="sc-first-text-field-1">
+                  <span class="label-txt-field">Cardholder Name</span>
+                  <input
+                    class="input-sm"
+                    pInputText
+                    aria-describedby="username-help"
+                    formControlName="cardholderName"
+                  />
+                </div>
+  
+                <div class="sc-first-text-field-1">
+                  <span class="label-txt-field">Issuer</span>
+                  <p-dropdown
+                    class="field-dropdown-sm"
+                    [options]="[]"
+                    [filter]="true"
+                    optionLabel="fiid"
+                    formControlName="issuer"
+                    filterBy="fiid"
+                    appendTo="body"
+                    [placeholder]="'Select Field'"
+                    [showClear]="true"
+                  ></p-dropdown>
+                </div>
+              </div>
+  
+              <div class="search-button-container">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="sc-search-button"
+                  (click)="onSearchClicked(formGroup.getRawValue())"
+                >
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-card>
+    </div>
+  
+    <div class="second-container">
+      <p-card class="table-card">
+        <p-table
+          #dt
+          [tableStyle]="{ 'min-width': '50rem' }"
+          [resizableColumns]="true"
+          [value]="pans"
+          selectionMode="single"
+          [paginator]="true"
+          [exportHeader]="'customExportHeader'"
+          [showCurrentPageReport]="true"
+          [rowsPerPageOptions]="[15, 25, 50, 100, 250, 500]"
+          [scrollable]="true"
+          [rows]="15"
+          [(selection)]="selectedPan"
+          (onRowSelect)="onListClicked()"
+          (onRowUnselect)="onListUnClicked()"
+          dataKey="id"
+          class="test-data-pan-table"
+          styleClass="p-datatable-sm p-datatable-gridlines"
+        >
+          <ng-template pTemplate="caption">
+            <div class="header-table">
+              <span style="font-size: 0.8rem; padding-left: 1rem"
+                >PAN Data</span
+              >
+  
+              <div class="table-func-container-2">
+                <button
+                  type="button"
+                  pButton
+                  pRipple
+                  icon="bx bx-layer-plus"
+                  (click)="onClickedAddPan()"
+                  matTooltip="Add Pan"
+                  [matTooltipPosition]="'below'"
+                ></button>
+                <button
+                  type="button"
+                  pButton
+                  pRipple
+                  [disabled]="selectedPan == undefined"
+                  icon="bx bx-edit"
+                  (click)="onClickedEditPan()"
+                  matTooltip="Edit Pan"
+                  [matTooltipPosition]="'below'"
+                ></button>
+                <button
+                  type="button"
+                  pButton
+                  pRipple
+                  [disabled]="selectedPan == undefined"
+                  icon="bx bx-trash-alt"
+                  (click)="onClickedDeletePan()"
+                  matTooltip="Delete Pan"
+                  [matTooltipPosition]="'below'"
+                  class="p-button-danger"
+                ></button>
+              </div>
+            </div>
+          </ng-template>
+  
+          <ng-template pTemplate="header">
+            <tr>
+              <th pResizableColumn>PAN</th>
+              <th pResizableColumn>Cardholder Name</th>
+              <th pResizableColumn>Issuer</th>
+              <th pResizableColumn>Comment</th>
+              <th pResizableColumn>External Version</th>
+              <th pResizableColumn>Internal Revision</th>
+              <th pResizableColumn>ATM Limit Max</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product let-i="rowIndex">
+            <tr [pSelectableRow]="product">
+              <td class="row-width">{{ product.pan }}</td>
+              <td class="row-width">{{ product.cardholderName }}</td>
+              <td class="row-width">{{ product.issuer }}</td>
+              <td class="row-width">{{ product.comment }}</td>
+              <td class="row-width">{{ product.externalVersion }}</td>
+              <td class="row-width">{{ product.internalRevision }}</td>
+              <td class="row-width">{{ product.atmLimitMax }}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr style="">
+              <td colspan="7">There is no Terminal.</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-card>
+    </div>
+  </div>
+  
+  <ng-template [ngIf]="isLoading">
+    <app-overlay-loading [isLoading]="isLoading"></app-overlay-loading>
+  </ng-template>
+  
+
+  <ng-template [ngIf]="visiblePanDialog">
+    <!--CRUD Black List Dialog-->
+    <app-test-data-pan-dialog
+      [isOpen]="visiblePanDialog"
+      [itemSelected]="selectedPan"
+      (closeSelf)="onCloseListDialog($event)"
+      (isLoading)="onLoading($event)"
+      [dialogMode]="dialogMode"
+    ></app-test-data-pan-dialog>
+  </ng-template>

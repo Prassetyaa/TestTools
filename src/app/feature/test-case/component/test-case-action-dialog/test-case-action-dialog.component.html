@@ -1,0 +1,218 @@
+<p-dialog
+  [header]="
+    StringUtils.capitalizeFirstLetter(dialogMode.toLocaleLowerCase()) +
+    ' Action'
+  "
+  [(visible)]="isOpen"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  class="test-case-action-dialog"
+  (onShow)="onDialogVisible()"
+  (onHide)="onClose()"
+>
+  <div class="test-case-action-dialog-container" [formGroup]="form">
+    <div class="test-case-action-form-container">
+      <div class="common-text-field-dialog-container">
+        <span class="label-txt-field-sm">Select Action</span>
+        <p-dropdown
+          appendTo="body"
+          class="field-dropdown"
+          formControlName="actionType"
+          [options]="dummyActionType"
+          optionLabel="name"
+          [placeholder]="'Select Action'"
+          [filter]="true"
+          filterBy="name"
+          (onChange)="actionChecker($event)"
+        ></p-dropdown>
+      </div>
+      <ng-container *ngIf="isActionField('1')">
+        <div class="transaction-tb-container">
+          <span class="transaction-title">Transaction</span>
+          <div style="height: 100%; padding-bottom: 0.5rem">
+            <p-table
+              #dt
+              [tableStyle]="{ 'min-width': '30vw' }"
+              [resizableColumns]="true"
+              [value]="transactionItems"
+              [(selection)]="selectedTransaction"
+              selectionMode="single"
+              [exportHeader]="'customExportHeader'"
+              [scrollable]="true"
+              dataKey="id"
+              class="aggregate-table"
+              styleClass="p-datatable-sm p-datatable-gridlines"
+            >
+              <ng-template pTemplate="caption">
+                <div class="transaction-buttons-container">
+                  <button
+                    type="button"
+                    pButton
+                    pRipple
+                    icon="bx bx-layer-plus"
+                    (click)="addTransactionDialog()"
+                    matTooltip="Add Transaction"
+                    [matTooltipPosition]="'below'"
+                  ></button>
+                  <button
+                    type="button"
+                    pButton
+                    pRipple
+                    icon="bx bx-edit"
+                    [disabled]="selectedTransaction == undefined"
+                    matTooltip="Edit Transaction"
+                    [matTooltipPosition]="'below'"
+                  ></button>
+                  <button
+                    type="button"
+                    pButton
+                    pRipple
+                    icon="bx bx-trash-alt"
+                    (click)="deleteTransaction()"
+                    [disabled]="selectedTransaction == undefined"
+                    matTooltip="Delete Transaction"
+                    [matTooltipPosition]="'below'"
+                    class="p-button-danger"
+                  ></button>
+                </div>
+              </ng-template>
+
+              <ng-template pTemplate="header">
+                <tr>
+                  <th pResizableColumn style="font-size: 0.6rem">
+                    Transaction Type
+                  </th>
+                  <th pResizableColumn style="font-size: 0.6rem">HPAN</th>
+                  <th pResizableColumn style="font-size: 0.6rem">Account</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-item>
+                <tr [pSelectableRow]="item">
+                  <td style="font-size: 0.6rem">{{ item.transType }}</td>
+                  <td style="font-size: 0.6rem">{{ item.hpan }}</td>
+                  <td style="font-size: 0.6rem" class="row-width-wrap">
+                    {{ item.account }}
+                  </td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                  <td colspan="4">There is no action.</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Select Condition Transfer</span>
+          <p-dropdown
+            appendTo="body"
+            class="field-dropdown"
+            formControlName="conditionTransfer"
+            [options]="conditionTransfer"
+            optionLabel="name"
+            [placeholder]="'Select Condition'"
+            [filter]="true"
+            filterBy="name"
+          ></p-dropdown>
+        </div>
+      </ng-container>
+
+      <!-- <div
+        class="common-text-field-dialog-container"
+        *ngIf="isActionField('91')"
+      >
+        <span class="label-txt-field-sm">Comments</span>
+        <textarea
+          formControlName="comment"
+          rows="1"
+          cols="20"
+          class="input-sm input-area-nm"
+          style="resize: none"
+          pInputTextarea
+        ></textarea>
+      </div> -->
+    </div>
+
+    <div class="dialog-button-container">
+      <button
+        mat-stroked-button
+        color="warn"
+        class="dialog-button"
+        (click)="onClose()"
+      >
+        Cancel
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="dialog-button"
+        [disabled]="isValueNotValid()"
+        (click)="onSave(form.getRawValue())"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</p-dialog>
+
+<ng-template [ngIf]="visibleTransactionAddDialog">
+  <p-dialog
+    header="Add Transaction"
+    [(visible)]="visibleTransactionAddDialog"
+    [modal]="true"
+    [style]="{ width: '50vw' }"
+    [draggable]="false"
+    [resizable]="false"
+    class="test-case-action-dialog"
+    (onShow)="onDialogVisible()"
+    (onHide)="onCloseTransactionDialog()"
+  >
+    <div class="test-case-action-dialog-container">
+      <div
+        class="test-case-action-form-container"
+        [formGroup]="transactionForm"
+      >
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Transaction</span>
+          <p-dropdown
+            formControlName="transaction"
+            class="field-dropdown"
+            [options]="dummyTransaction"
+            optionLabel="transType"
+            [placeholder]="'Select Transaction'"
+            [filter]="true"
+            filterBy="id"
+          >
+            <ng-template let-data pTemplate="rules">
+              <div class="item">
+                <span>{{ data.transType }} - {{ data.hpan }}</span>
+              </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
+      </div>
+      <div class="dialog-button-container">
+        <button
+          mat-stroked-button
+          color="warn"
+          class="dialog-button"
+          (click)="onCloseTransactionDialog()"
+        >
+          Cancel
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="dialog-button"
+          [disabled]="isValueNotValidTransaction()"
+          (click)="onSaveTransaction(transactionForm.getRawValue())"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </p-dialog>
+</ng-template>

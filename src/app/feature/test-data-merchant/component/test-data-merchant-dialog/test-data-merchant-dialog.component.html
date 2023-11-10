@@ -1,0 +1,93 @@
+<!-- Test Data Institution Dialog -->
+<p-dialog
+  [header]="
+    StringUtils.capitalizeFirstLetter(dialogMode.toLocaleLowerCase()) +
+    ' Merchant'
+  "
+  [(visible)]="isOpen"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  class="test-data-merchant-dialog"
+  (onShow)="onDialogVisible()"
+  (onHide)="onClose()"
+>
+  <div class="test-data-merchant-dialog-container" [formGroup]="formGroup">
+    <div class="test-data-merchant-form-container">
+      <div class="test-data-merchant-first-form">
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Merchant Number</span>
+          <input class="input" pInputText formControlName="merchantNumber"/>
+        </div>
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Name</span>
+          <input class="input" pInputText formControlName="name"/>
+          <!-- <p-dropdown
+            formControlName="test"
+            class="field-dropdown"
+            [options]="[]"
+            optionLabel="description"
+            [placeholder]="'Select Entity Type'"
+            [filter]="true"
+            filterBy="description"
+          ></p-dropdown> -->
+        </div>
+      </div>
+      <div class="test-data-merchant-first-form">
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Acquirer</span>
+          <input class="input" pInputText formControlName="acquirer"/>
+          <!-- <p-calendar
+            formControlName="test"
+            appendTo="body"
+            class="calender-field-pick"
+            [showIcon]="true"
+            [showTime]="true"
+            [showSeconds]="true"
+          ></p-calendar> -->
+        </div>
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Category Code</span>
+          <input class="input" pInputText formControlName="categoryCode"/>
+          <!-- <p-calendar
+            formControlName="test"
+            appendTo="body"
+            class="calender-field-pick"
+            [showIcon]="true"
+            [showTime]="true"
+            [showSeconds]="true"
+          ></p-calendar> -->
+        </div>
+      </div>
+      <div class="test-data-merchant-first-form">
+        <div class="common-text-field-dialog-container">
+          <span class="label-txt-field-sm">Comment</span>
+          <input class="input" pInputText formControlName="comment"/>
+        </div>
+        
+      </div>
+    </div>
+
+
+    <div class="dialog-button-container">
+      <button
+        mat-stroked-button
+        color="warn"
+        class="dialog-button"
+        (click)="onClose()"
+      >
+        Cancel
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="dialog-button"
+        [disabled]="isValueNotValid()"
+        (click)="onSave(formGroup.getRawValue())"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</p-dialog>

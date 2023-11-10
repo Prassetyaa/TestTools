@@ -1,0 +1,291 @@
+<div class="container">
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <div class="common-text-field-dialog-container">
+      <input class="input" pInputText placeholder="Search Message Setting" />
+    </div>
+  </div>
+  <div *ngIf="endpointItems && endpointItems.length > 0; else noItemsTemplate">
+    <div class="main-container">
+      <!-- Endpoint Cards Container -->
+      <div class="endpoint-cards-container">
+        <div
+          *ngFor="let endpoint of endpointItems"
+          [class.selected]="endpoint === selectedEndpointItem"
+          class="endpoint-card"
+          (click)="onEndpointCardClick(endpoint)"
+        >
+          <div class="endpoint-card-content">
+            <p>{{ endpoint?.url }}</p>
+          </div>
+          <!-- <div class="icon-detail">
+              <i class="bx bx-collapse-alt"></i>
+          </div> -->
+        </div>
+      </div>
+
+      <!-- Transaction Parameter Section -->
+      <div class="trans-param-section" *ngIf="selectedEndpointItem">
+        <p-table
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [value]="dummyAlertType"
+        [paginator]="true"
+        [exportHeader]="'customExportHeader'"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[15, 25, 50, 100, 250, 500]"
+        [scrollable]="true"
+        [rows]="15"
+        [scrollHeight]="'50vh'"
+        selectionMode="single"
+        
+        dataKey="url"
+        class="transaction-table"
+        styleClass="p-datatable-sm p-datatable-gridlines"
+      >
+        <!-- Main Table Header -->
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Name</th>
+            <th style="width: 10rem">MTI</th>
+            <th style="width: 10rem">HPAN</th>
+            <th style="width: 10rem">Processing</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="caption">
+          <div class="header-table">
+            <span style="font-size: 0.8rem; padding-left: 1rem"
+            >Message Field</span
+            >
+
+            <div class="table-func-container-2">
+              <button
+                type="button"
+                pButton
+                pRipple
+                icon="bx bx-layer-plus"
+                matTooltip="Add"
+                
+                [matTooltipPosition]="'below'"
+              ></button>
+              <button
+                type="button"
+                pButton
+                pRipple
+                
+                icon="bx bx-edit"
+                matTooltip="Edit"
+                [matTooltipPosition]="'below'"
+              ></button>
+              <button
+                type="button"
+                pButton
+                pRipple
+                icon="bx bx-trash-alt"
+                
+                matTooltip="Delete"
+                [matTooltipPosition]="'below'"
+                class="p-button-danger"
+              ></button>
+            </div>
+          </div>
+        </ng-template>
+
+        <!-- Main Table Body -->
+        <ng-template pTemplate="body" let-endpoint let-expanded="expanded">
+          <tr [pSelectableRow]="endpoint">
+            <td>
+              <div style="display: flex; align-items: center; gap: 0.5rem">
+                <button
+                  mat-icon-button
+                  [pRowToggler]="endpoint"
+                  class="toggle-btn-json"
+                >
+                  <span
+                    [class]="
+                      expanded ? 'bx bx-chevron-down' : 'bx bx-chevron-right'
+                    "
+                  ></span>
+                </button>
+                <span>/{{ endpoint.url }}</span>
+              </div>
+            </td>
+            <td>{{ endpoint.type }}</td>
+            <td style="width: 10rem"></td>
+            <td style="width: 10rem"></td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr style="">
+            <td colspan="4">There is no body field.</td>
+          </tr>
+        </ng-template>
+
+        <!-- Row Expansion for States -->
+        <ng-template pTemplate="rowexpansion" let-endpoint>
+          <tr>
+            <td colspan="4" style="padding: 0">
+              <p-table
+                [value]="endpoint.states"
+                selectionMode="single"
+                
+                dataKey="key"
+                class="state-table"
+              >
+                <!-- Table Body for States -->
+                <ng-template
+                  pTemplate="body"
+                  let-state
+                  let-expanded1="expanded"
+                >
+                  <tr class="row-state" [pSelectableRow]="state">
+                    <td class="row-expand">
+                      <div
+                        style="
+                          display: flex;
+                          align-items: center;
+                          gap: 0.5rem;
+                          padding-left: 1rem;
+                        "
+                      >
+                        <button
+                          mat-icon-button
+                          [pRowToggler]="state"
+                          [pRowTogglerDisabled]="
+                            checkExpandButtonStatus(state.configs)
+                          "
+                          
+                          [disabled]="checkExpandButtonStatus(state.configs)"
+                          class="toggle-btn-json"
+                          [style]="checkExpandButtonStyle(state.configs)"
+                        >
+                          <span
+                            [class]="
+                              expanded1
+                                ? 'bx bx-chevron-down' : 'bx bx-chevron-right'
+                            "
+                            
+                          ></span>
+                        </button>
+                        <span>{{ state.state }}</span>
+                      </div>
+                    </td>
+                    <td style="width: 10rem"></td>
+                    <td style="width: 10rem"></td>
+                    <td style="width: 10rem"></td>
+                  </tr>
+                </ng-template>
+
+                <!-- Row Expansion for Field Config -->
+                <ng-template pTemplate="rowexpansion" let-state>
+                  <ng-container
+                    *ngTemplateOutlet="
+                      nestedFieldConfigRow;
+                      context: { data: state.configs, level: 0 }
+                    "
+                  ></ng-container>
+                </ng-template>
+              </p-table>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+      <ng-template #nestedFieldConfigRow let-v1="data" let-level="level">
+        <tr>
+          <td
+            colspan="4"
+            class="row-expand"
+            style="padding: 0; border-bottom: unset"
+          >
+            <div>
+              <p-table
+                [value]="v1"
+                selectionMode="single"
+                
+                dataKey="id"
+                class="config-table"
+              >
+                <!-- Table Body for Field Config -->
+                <ng-template
+                  pTemplate="body"
+                  let-config
+                  let-expanded2="expanded"
+                >
+                  <tr class="row-ex" [pSelectableRow]="config">
+                    <td class="row-expand1">
+                      <div
+                        [style.padding-left.rem]="calculatePadding(level)"
+                        style="display: flex; align-items: center; gap: 0.5rem"
+                      >
+                        <button
+                          mat-icon-button
+                          [pRowToggler]="config"
+                          [pRowTogglerDisabled]="
+                            checkExpandButtonStatus(config.childField)
+                          "
+                          
+                          [disabled]="
+                            checkExpandButtonStatus(config.childField)
+                          "
+                          class="toggle-btn-json"
+                          [style]="checkExpandButtonStyle(config.childField)"
+                        >
+                          <span
+                            [class]="
+                              expanded2
+                                ? 'bx bx-chevron-down'
+                                : 'bx bx-chevron-right'
+                            "
+                          ></span>
+                        </button>
+                        <span>{{ config.fieldName }}</span>
+                      </div>
+                    </td>
+                    <td style="width: 10rem">
+                      {{ config.dataType.description }}
+                    </td>
+                    <td style="width: 10rem">{{ config.length }}</td>
+                    <td style="width: 10rem">{{ config.sequence }}</td>
+                  </tr>
+                </ng-template>
+
+                <!-- Row Expansion for Child Config -->
+                <ng-template pTemplate="rowexpansion" let-config>
+                  <ng-container
+                    *ngTemplateOutlet="
+                      nestedFieldConfigRow;
+                      context: { data: config.childField, level: level + 1 }
+                    "
+                  ></ng-container>
+                </ng-template>
+              </p-table>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ng-template for the case when there are no items -->
+<ng-template #noItemsTemplate>
+  <p class="message-items">No endpoint items available.</p>
+</ng-template>
+
+<!-- Pagination Controls at the Bottom -->
+<!-- <div class="pagination-controls">
+  <button (click)="prevPage()" pButton pRipple [disabled]="currentPage === 1">
+    Previous
+  </button>
+  <span>{{ currentPage }} / {{ totalPages }}</span>
+  <button
+    (click)="nextPage()"
+    pButton
+    pRipple
+    [disabled]="currentPage === totalPages"
+  >
+    Next
+  </button>
+</div> -->

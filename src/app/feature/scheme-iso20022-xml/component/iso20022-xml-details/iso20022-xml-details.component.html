@@ -1,0 +1,23 @@
+<div class="json-detail-main-container">
+    <div class="first-container">
+      <p-tabView class="json-detail-tab" (onChange)="onTabChange($event)">
+        <p-tabPanel header="General Setting">
+          <app-iso20022-xml-general-settings></app-iso20022-xml-general-settings>
+        </p-tabPanel>
+  
+        <p-tabPanel header="Connection Setting">
+          <app-iso20022-xml-connection-settings></app-iso20022-xml-connection-settings>
+        </p-tabPanel>
+  
+        <p-tabPanel header="Message Setting">
+          <app-iso20022-xml-message-settings></app-iso20022-xml-message-settings>
+        </p-tabPanel>
+
+      </p-tabView>
+    </div>
+  </div>
+  
+  <!-- <ng-template [ngIf]="isLoading">
+    <app-overlay-loading [isLoading]="isLoading"></app-overlay-loading>
+  </ng-template>
+   -->

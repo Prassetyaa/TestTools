@@ -1,0 +1,107 @@
+<div class="transaction-qr-container">
+  <div class="first-container">
+    <div class="search-container" [formGroup]="formGroup">
+      <div class="sc-first-row">
+        <div class="field">
+          <div class="sc-field-container">
+            <div class="sc-first-text-field-1">
+              <span class="label-txt-field">QR Code</span>
+              <p-dropdown
+                formControlName="qrCode"
+                class="field-dropdown"
+                [options]="[]"
+                optionLabel="description"
+                [placeholder]="'Select QR Code'"
+                [filter]="true"
+                filterBy="description"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="search-button-container">
+            <button mat-raised-button color="primary" class="sc-search-button">
+              Preview
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="second-container">
+    <p-card class="transaction-field-card">
+      <p-table
+        #dt
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [resizableColumns]="true"
+        [value]="[]"
+        selectionMode="single"
+        [paginator]="true"
+        [exportHeader]="'customExportHeader'"
+        [showCurrentPageReport]="true"
+        [scrollable]="true"
+        [rows]="5"
+        dataKey="id"
+        scrollHeight="50vh"
+        class="rule-table"
+        styleClass="p-datatable-sm p-datatable-gridlines"
+      >
+        <ng-template pTemplate="caption">
+          <div class="header-table">
+            <span style="font-size: 0.8rem; padding-left: 1rem"
+              >QR Details</span
+            >
+
+            <div class="table-func-container-2">
+              <button
+                type="button"
+                pButton
+                pRipple
+                icon="bx bx-layer-plus"
+                matTooltip="Add Field Setting"
+                [matTooltipPosition]="'below'"
+              ></button>
+              <button
+                type="button"
+                pButton
+                pRipple
+                icon="bx bx-edit"
+                matTooltip="Edit Field Setting"
+                [matTooltipPosition]="'below'"
+              ></button>
+              <button
+                type="button"
+                pButton
+                pRipple
+                icon="bx bx-trash-alt"
+                matTooltip="Delete Field Setting"
+                [matTooltipPosition]="'below'"
+                class="p-button-danger"
+              ></button>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th pResizableColumn>Tag</th>
+            <th pResizableColumn>Name</th>
+            <th pResizableColumn>Source Type</th>
+            <th pResizableColumn>Value</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr [pSelectableRow]="product">
+            <td class="row-width-xs">{{ product.respCode }}</td>
+            <td class="row-width">{{ product.intResp?.description }}</td>
+            <td class="row-width">{{ product.intResp?.description }}</td>
+            <td class="row-width">{{ product.intResp?.description }}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr style="">
+            <td colspan="4">There is no emv.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>
