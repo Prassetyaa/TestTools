@@ -46,7 +46,7 @@ export class TestDataTerminalDialogComponent implements OnInit {
 
 
   onSave(event: any) {
-
+    this.terminalService.addTerminal(event)
   }
 
   onClose() {
