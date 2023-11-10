@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TestDataTerminalDomain } from '../../domain/test-data-terminal.domain';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { StringUtils } from 'src/app/shared/utils/string.utils';
+import { TestDataTerminalService } from '../../service/test-data-terminal.service';
 
 @Component({
   selector: 'app-test-data-terminal-dialog',
@@ -20,10 +21,15 @@ export class TestDataTerminalDialogComponent implements OnInit {
   protected readonly StringUtils = StringUtils;
 
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private terminalService: TestDataTerminalService) {}
   ngOnInit(): void {
     this.formGroup = this.fb.group({
-      test: ['']
+      terminalId: [''],
+      merchant: [''],
+      currencyCode: [''],
+      comment: [''],
+
+
     })
   }
 

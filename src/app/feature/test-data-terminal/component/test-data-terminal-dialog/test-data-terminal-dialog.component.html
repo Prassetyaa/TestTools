@@ -17,11 +17,12 @@
     <div class="test-data-terminal-form-container">
       <div class="test-data-terminal-first-form">
         <div class="common-text-field-dialog-container">
-          <span class="label-txt-field-sm">Test</span>
-          <input class="input" pInputText formControlName="test"/>
+          <span class="label-txt-field-sm">Terminal ID</span>
+          <input class="input" pInputText formControlName="terminalId"/>
         </div>
         <div class="common-text-field-dialog-container">
-          <span class="label-txt-field-sm">Test</span>
+          <span class="label-txt-field-sm">Merchant</span>
+          <input class="input" pInputText formControlName="merchant"/>
           <p-dropdown
             formControlName="test"
             class="field-dropdown"
@@ -35,46 +36,17 @@
       </div>
       <div class="test-data-terminal-first-form">
         <div class="common-text-field-dialog-container">
-          <span class="label-txt-field-sm">Test</span>
-          <p-calendar
-            formControlName="test"
-            appendTo="body"
-            class="calender-field-pick"
-            [showIcon]="true"
-            [showTime]="true"
-            [showSeconds]="true"
-          ></p-calendar>
+          <span class="label-txt-field-sm">Currency Code</span>
+          <input class="input" pInputText formControlName="currencyCode"/>
+
         </div>
         <div class="common-text-field-dialog-container">
-          <span class="label-txt-field-sm">Test</span>
-          <p-calendar
-            formControlName="test"
-            appendTo="body"
-            class="calender-field-pick"
-            [showIcon]="true"
-            [showTime]="true"
-            [showSeconds]="true"
-          ></p-calendar>
+          <span class="label-txt-field-sm">Comment</span>
+          <input class="input" pInputText formControlName="comment"/>
+
         </div>
       </div>
-      <div class="test-data-terminal-first-form">
-        <div class="common-text-field-dialog-container">
-          <span class="label-txt-field-sm">Test</span>
-          <input class="input" formControlName="test" pInputText/>
-        </div>
-        <div class="common-text-field-dialog-container">
-          <span class="label-txt-field-sm">Test</span>
-          <p-dropdown
-            class="field-dropdown"
-            formControlName="test"
-            [options]="[]"
-            optionLabel="groupName"
-            [placeholder]="'Select User Group'"
-            [filter]="true"
-            filterBy="groupName"
-          ></p-dropdown>
-        </div>
-      </div>
+      
     </div>
 
 

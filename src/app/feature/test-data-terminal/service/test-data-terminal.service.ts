@@ -13,11 +13,11 @@ export class TestDataTerminalService {
   constructor(private http: HttpClient, private terminalDispatcher: TestDataTerminalDispatcher) { }
 
   fetchAllTerminal() {
-    return this.http.get<CustomHttpResponse<TestDataTerminalDomain[]>>(`${this.apiUrl}`)
+    return this.http.get<CustomHttpResponse<TestDataTerminalDomain[]>>(`${this.apiUrl}/terminal/list`)
   }
 
   addTerminal(payload: TestDataTerminalDomain) {
-    return this.http.post<CustomHttpResponse<any>>(`${this.apiUrl}`, payload)
+    return this.http.post<CustomHttpResponse<any>>(`${this.apiUrl}/terminal/create`, payload)
   }
 
   updateTerminal(payload: TestDataTerminalDomain) {
