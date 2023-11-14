@@ -17,63 +17,30 @@
     <div class="field-setting-form-container">
       <div class="field-setting-first-form">
         <div class="common-text-field-dialog-container">
-          <span class="label-txt-field-sm">Test</span>
-          <input class="input" pInputText formControlName="test"/>
+          <span class="label-txt-field-sm">Field Id</span>
+          <input class="input" pInputText formControlName="fieldId"/>
         </div>
         <div class="common-text-field-dialog-container">
-          <span class="label-txt-field-sm">Test</span>
-          <p-dropdown
-            formControlName="test"
-            class="field-dropdown"
-            [options]="[]"
-            optionLabel="description"
-            [placeholder]="'Select Entity Type'"
-            [filter]="true"
-            filterBy="description"
-          ></p-dropdown>
+          <span class="label-txt-field-sm">Value</span>
+          <input class="input" formControlName="value" pInputText/>
         </div>
       </div>
       <div class="field-setting-first-form">
         <div class="common-text-field-dialog-container">
-          <span class="label-txt-field-sm">Test</span>
-          <p-calendar
-            formControlName="test"
-            appendTo="body"
-            class="calender-field-pick"
-            [showIcon]="true"
-            [showTime]="true"
-            [showSeconds]="true"
-          ></p-calendar>
+          <span class="label-txt-field-sm">Expected Value</span>
+          <input class="input" formControlName="expectedValue" pInputText/>
         </div>
         <div class="common-text-field-dialog-container">
-          <span class="label-txt-field-sm">Test</span>
-          <p-calendar
-            formControlName="test"
-            appendTo="body"
-            class="calender-field-pick"
-            [showIcon]="true"
-            [showTime]="true"
-            [showSeconds]="true"
-          ></p-calendar>
+          <span class="label-txt-field-sm">Value Type</span>
+          <input class="input" formControlName="valueType" pInputText/>
         </div>
       </div>
       <div class="field-setting-first-form">
         <div class="common-text-field-dialog-container">
-          <span class="label-txt-field-sm">Test</span>
-          <input class="input" formControlName="test" pInputText/>
+          <span class="label-txt-field-sm">Level</span>
+          <input class="input" formControlName="level" pInputText/>
         </div>
-        <div class="common-text-field-dialog-container">
-          <span class="label-txt-field-sm">Test</span>
-          <p-dropdown
-            class="field-dropdown"
-            formControlName="test"
-            [options]="[]"
-            optionLabel="groupName"
-            [placeholder]="'Select User Group'"
-            [filter]="true"
-            filterBy="groupName"
-          ></p-dropdown>
-        </div>
+        
       </div>
     </div>
 

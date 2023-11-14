@@ -21,7 +21,11 @@ export class TransactionFieldSettingDialogComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
   ngOnInit(): void {
     this.formGroup = this.fb.group({
-      test: [''],
+      fieldId: [''],
+      value: [''],
+      expectedValue: [''],
+      valueType: [''],
+      level: [''],
     });
   }
 
@@ -29,7 +33,9 @@ export class TransactionFieldSettingDialogComponent implements OnInit {
 
   isValueNotValid() {}
 
-  onSave(event: any) {}
+  onSave(event: any) {
+
+  }
 
   onClose() {
     this.formGroup.reset();

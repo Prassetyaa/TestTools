@@ -17,10 +17,12 @@ export class TransactionFieldSettingComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
-      tag: [''],
-      name: [''],
-      sourceType: [''],
+      fieldId: [''],
       value: [''],
+      expectedValue: [''],
+      valueType: [''],
+      level: [''],
+
     });
   }
 

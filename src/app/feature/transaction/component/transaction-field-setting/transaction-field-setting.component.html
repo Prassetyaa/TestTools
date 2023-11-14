@@ -5,33 +5,15 @@
           <div class="field">
             <div class="sc-field-container">
               <div class="sc-first-text-field-1">
-                <span class="label-txt-field">Tag</span>
+                <span class="label-txt-field">Field Id</span>
                 <input
                   class="input-sm"
                   pInputText
                   aria-describedby="username-help"
-                  formControlName="tag"
+                  formControlName="fieldId"
                 />
               </div>
   
-              <div class="sc-first-text-field-1">
-                <span class="label-txt-field">Name</span>
-                <input
-                  class="input-sm"
-                  pInputText
-                  aria-describedby="username-help"
-                  formControlName="name"
-                />
-              </div>
-              <div class="sc-first-text-field-1">
-                <span class="label-txt-field">Source Type</span>
-                <input
-                  class="input-sm"
-                  pInputText
-                  aria-describedby="username-help"
-                  formControlName="sourceType"
-                />
-              </div>
               <div class="sc-first-text-field-1">
                 <span class="label-txt-field">Value</span>
                 <input
@@ -39,6 +21,33 @@
                   pInputText
                   aria-describedby="username-help"
                   formControlName="value"
+                />
+              </div>
+              <div class="sc-first-text-field-1">
+                <span class="label-txt-field">Expected Value</span>
+                <input
+                  class="input-sm"
+                  pInputText
+                  aria-describedby="username-help"
+                  formControlName="expectedValue"
+                />
+              </div>
+              <div class="sc-first-text-field-1">
+                <span class="label-txt-field">Value Type</span>
+                <input
+                  class="input-sm"
+                  pInputText
+                  aria-describedby="username-help"
+                  formControlName="valueType"
+                />
+              </div>
+              <div class="sc-first-text-field-1">
+                <span class="label-txt-field">Level</span>
+                <input
+                  class="input-sm"
+                  pInputText
+                  aria-describedby="username-help"
+                  formControlName="level"
                 />
               </div>
             </div>
@@ -125,10 +134,11 @@
   
           <ng-template pTemplate="header">
             <tr>
-              <th pResizableColumn>Tag</th>
-              <th pResizableColumn>Name</th>
-              <th pResizableColumn>Source Type</th>
+              <th pResizableColumn>Field Id</th>
               <th pResizableColumn>Value</th>
+              <th pResizableColumn>Expected Value</th>
+              <th pResizableColumn>Value Type</th>
+              <th pResizableColumn>Level</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-product>

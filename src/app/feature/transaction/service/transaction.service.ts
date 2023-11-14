@@ -43,12 +43,14 @@ export class TransactionService {
   fetchAddData(utrnno: string) {
     const params = new HttpParams().set('utrnno', utrnno);
 
-    return this.http.get<CustomHttpResponse<TransactionAddtDomain[]>>(`${this.apiUrl}/${RoutePathEnum.TRANSACTION_ADDT_GET_BY_HPAN_PATH}`, {params});
+    return this.http.get<CustomHttpResponse<TransactionAddtDomain[]>>(`${this.apiUrl}/transaction/create`, {params});
   }
 
   assignFlag(data: TransactionDomain) {
     return this.http.post<CustomHttpResponse<any>>(`${this.apiUrl}/${RoutePathEnum.ASSIGN_FRAUD_FLAG}`, data);
   }
+
+  // dispatcher
 
   onFetchAllTransaction() {
     this.transactionDispatcher._FetchAllTransaction()
